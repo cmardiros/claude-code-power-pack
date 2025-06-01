@@ -122,7 +122,11 @@ After all review Tasks complete:
    - **"ultrathink"**: Strategic revision with ecosystem implications
 
 ### Phase 4: Output Organization
-**ORGANIZE** all outputs with clear naming and generate summary report of completed work.
+**ORGANIZE** all outputs with clear naming:
+- Review analyses saved to `plan-reviews/`: `[plan-name]-v1-[perspective]-review.md`
+- Revised plans saved to `plans/`: `[plan-name]-v1-revised.md`
+
+Generate summary report of completed work.
 
 ## Error Handling
 
