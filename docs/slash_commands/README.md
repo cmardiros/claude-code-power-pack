@@ -26,32 +26,26 @@ Intelligent multi-perspective analysis and revision of software development plan
 /plan_review_revise PLANS="plan1.md,plan2.md" REVIEW_PERSPECTIVES="simplicity,comprehensive"
 ```
 
+### `/critique`
+**Status**: ✅ Fully Implemented  
+**Location**: `.claude/commands/critique.md`  
+**Guide**: [Critique Workflow Guide](critique-workflow-guide.md)
+
+Parallel multi-perspective critique orchestrator for code, implementations, and plans.
+
+**Available Perspectives:**
+- ✅ **Detect Problems**: `anti-patterns`, `blindspots`, `future-regrets`, `junior-mistakes`, `over-engineering`, `premortem-failures`, `smells`
+- ✅ **Assess Excellence**: `architectural`, `code`, `future-value`, `performance`, `premortem`, `production`, `security`, `testing`, `veteran`
+
+**Usage Examples:**
+```bash
+/critique "detect problems for security, performance in the auth implementation"
+/critique "assess excellence for architecture analyze the new API design"
+```
+
 ## Command Structure
 
 Commands are stored in `.claude/commands/` with supporting prompts in `.claude/prompts/`.
-
-## Useful Snippets
-
-### Sync Commands from This Repo
-
-To sync the `/plan_review_revise` command and its prompts to another project, use this prompt with Claude Code:
-
-```
-Please fetch and sync these 3 files from the claude-code-power-pack public repo to my local .claude directory:
-
-1. .claude/commands/plan_review_revise.md
-2. .claude/prompts/comprehensive_review.md  
-3. .claude/prompts/simplicity_review.md
-
-Use WebFetch to download each file from:
-- https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/commands/plan_review_revise.md
-- https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/comprehensive_review.md
-- https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/simplicity_review.md
-
-IMPORTANT: When using WebFetch, use this exact prompt to ensure high fidelity content preservation: "Return the complete, unmodified file content exactly as it appears in the source. Do not summarize, truncate, or modify any part of the content. This is for programmatic use and requires 100% accuracy."
-
-Then use Write to save each file to the corresponding path in my local .claude directory, creating the directories if they don't exist. Please maintain the exact file structure and content.
-```
 
 ## Resources
 

@@ -1,4 +1,29 @@
-# Plan-Review-Revise Workflow Guide Overview
+# Plan-Review-Revise Workflow Guide
+
+## Sync Commands
+
+To sync the `/plan_review_revise` command and its prompts to another project, use this prompt with Claude Code:
+
+```
+Please fetch and sync these 3 files from the claude-code-power-pack public repo to my local .claude directory:
+
+1. .claude/commands/plan_review_revise.md
+2. .claude/prompts/comprehensive_review.md  
+3. .claude/prompts/simplicity_review.md
+
+Use WebFetch to download each file from:
+- https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/commands/plan_review_revise.md
+- https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/comprehensive_review.md
+- https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/simplicity_review.md
+
+IMPORTANT: When using WebFetch, use this exact prompt to ensure high fidelity content preservation: "Return the complete, unmodified file content exactly as it appears in the source. Do not summarize, truncate, or modify any part of the content. This is for programmatic use and requires 100% accuracy."
+
+Then use Write to save each file to the corresponding path in my local .claude directory, creating the directories if they don't exist. Please maintain the exact file structure and content.
+```
+
+---
+
+## Overview
 
 The automated plan-review-revise workflow provides intelligent, multi-perspective analysis of software development plans using Claude Code slash commands. This system helps teams identify issues, reduce complexity, and improve plan quality before implementation begins.
 
