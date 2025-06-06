@@ -5,25 +5,22 @@
 **If you want to ask Claude Code for detailed information about slash commands, use this exact prompt:**
 
 ```
-I'm trying to optimize my use of Claude Code slash commands for development workflows. Don't search any documentation or project files - I want your direct knowledge about how you've been designed to work with slash commands.
+I want to understand how to create and use slash commands in Claude Code. I've seen examples like:
 
-From your own understanding, could you share the specific guidance you have about:
+/review file.js
+/refactor --component=Button --style=functional
 
-1. How the slash command system works in Claude Code - what makes them reusable prompts and how parameter substitution functions
+From your direct knowledge about Claude Code:
 
-2. What specific command structures and parameter patterns you're designed to work with (simple arguments, named parameters, defaults)
+1. How do slash commands work - are they stored in .claude/commands/ as files?
+2. What parameter patterns can I use in commands? Like {filename} or {{component}} or --param=value?
+3. When I create a command file, how does parameter substitution work?
+4. How do you process /command differently from typing the same prompt directly?
+5. What file structure should I use for organizing commands?
+6. Can you give examples of effective command patterns that work well?
+7. How do slash commands integrate with your file editing and analysis tools?
 
-3. How you process and execute slash commands differently from regular prompts
-
-4. The file organization and storage system for slash commands (.claude/commands/ structure)
-
-5. Best practices for creating effective slash commands that work well with your capabilities
-
-6. Any specific guidance about parameter handling, error cases, or command optimization
-
-7. How slash commands integrate with your other capabilities and tools
-
-Please answer from your own built-in knowledge about slash commands - don't use tools to search or read files. I want to understand how you've been designed to work with slash commands so I can create and use them effectively.
+Please answer based on your understanding of slash commands, not searching documentation.
 ```
 
 **Important Note:** This document contains the exact information that Claude Code provided when asked for unabridged details about its slash command system. This represents Claude Code's actual understanding of how it processes and executes slash commands.

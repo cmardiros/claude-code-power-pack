@@ -49,10 +49,20 @@ Intelligent multi-perspective analysis of software development plans with automa
 
 ### Directory Structure
 - `docs/` - User guides and command documentation
+- `docs/claude-code-system-instructions/` - Claude Code's self-reported capability documentation
 - `plans/` - Example implementation plans for review
 - `plan-reviews/` - Generated review outputs and revisions
 - `.claude/commands/` - Slash command implementations
 - `.claude/prompts/` - Review perspective prompts
+
+### Claude Code System Instructions
+The `docs/claude-code-system-instructions/` directory contains detailed documentation about Claude Code's capabilities, obtained by asking Claude Code instances to explain how they work. These documents include:
+
+- **CLAUDE.md system** - How Claude Code works with persistent instruction files
+- **# memory syntax** - How to use `#` to add persistent memories  
+- **Slash commands** - How to create and use parameterized command workflows
+
+Each document includes reproduction prompts so you can verify or update the information yourself. This is not official Anthropic documentation, but rather Claude Code's self-reported understanding of its own capabilities.
 
 ## 🎯 Get Started
 

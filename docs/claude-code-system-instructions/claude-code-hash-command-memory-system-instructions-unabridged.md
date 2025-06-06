@@ -2,28 +2,25 @@
 
 ## How to Reproduce This Information
 
-**If you want to ask Claude Code for detailed information about the # command memory system, use this exact prompt:**
+**If you want to ask Claude Code for detailed information about the # memory feature, use this exact prompt:**
 
 ```
-I'm trying to optimize my use of Claude Code's # command for adding memories and persistent instructions. Don't search any documentation or project files - I want your direct knowledge about how you've been designed to work with the # command memory system.
+I want to understand how to use the # syntax for adding memories in Claude Code. I've seen examples like:
 
-From your own understanding, could you share the specific guidance you have about:
+# Add to memory. Try "Always use descriptive variable names"
+# to memorize
 
-1. How the # command memory system works in Claude Code - what makes it persistent and how it integrates with CLAUDE.md
+From your direct knowledge about Claude Code:
 
-2. What specific syntax and patterns you're designed to recognize for the # command (# followed by text, specific formatting requirements)
+1. What happens when I type `# Remember this project uses TypeScript`?
+2. How does the `#` memory syntax work - does it save to CLAUDE.md files?
+3. Can you explain the simplest way to add something to memory using `#`?
+4. Do these memories persist between different Claude Code sessions?
+5. Is there a difference between `# Add to memory` and just `# some instruction`?
+6. How do # memories integrate with existing CLAUDE.md files?
+7. What types of information work best as # memories?
 
-3. How you process and store # command inputs - where they go and how they become persistent context
-
-4. The relationship between # command memories and existing CLAUDE.md files (enhancement vs replacement)
-
-5. Best practices for using # commands effectively - what types of information work well as memories
-
-6. How # command memories integrate with your session context and future conversations
-
-7. Any specific guidance about memory organization, hierarchy, or management you've been given
-
-Please answer from your own built-in knowledge about the # command system - don't use tools to search or read files. I want to understand how you've been designed to work with memory addition so I can use # commands effectively.
+Please answer based on your understanding of the `#` memory feature, not searching documentation.
 ```
 
 **Important Note:** This document contains the exact information that Claude Code provided when asked for unabridged details about its # command memory system. This represents Claude Code's actual understanding of how it processes and manages memory additions.
