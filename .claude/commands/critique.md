@@ -1,13 +1,21 @@
 # Critique Orchestrator
 
 Orchestrate parallel critiques from specified perspectives. Your role:
-1. Extract critique subject from original user input and map perspectives to prompt files
-2. Spawn Task agents for each perspective prompt
-3. Synthesize results to identify gaps, strengths, and prioritized issues
+1. Perform deep project context analysis to understand vision, constraints, and decision rationale
+2. Extract critique subject and map perspectives to prompt files
+3. Spawn Task agents with rich contextual foundation
+4. Synthesize results to identify gaps, strengths, and prioritized issues
 
 ## Orchestration Workflow
 
-### Phase 1: Context Clarification and Perspective Mapping
+### Phase 1: Context Synthesis
+
+**SYNTHESIZE** project context from user-provided information:
+- If user references docs/files, extract key vision, constraints, and decision rationale
+- Distill WHY decisions were made and what trade-offs guide the project
+- Create focused PROJECT_CONTEXT summary for sub-agents
+
+### Phase 2: Subject Resolution and Perspective Mapping
 1. **EXTRACT** critique subject and scope from natural language input
 2. **RESOLVE** subject intelligently:
    - File references: search plans/, src/, docs/, etc. for matching files
@@ -23,9 +31,8 @@ Orchestrate parallel critiques from specified perspectives. Your role:
    - What is being critiqued (files, concepts, implementations)
    - Relevant file paths and/or git diff
    - Background context and motivation
-   - Domain-specific insights: relevant design patterns, architectural principles, or industry best practices that apply
 
-### Phase 2: Spawn Parallel Critique Tasks
+### Phase 3: Spawn Parallel Critique Tasks
 For each mapped perspective prompt, **INVOKE Task agent** with:
 
 **Task Description**: "{perspective} critique of {subject}"
@@ -34,7 +41,10 @@ For each mapped perspective prompt, **INVOKE Task agent** with:
 ```
 Perform critique using the specified perspective prompt.
 
-## Context
+## Project Context
+{synthesized_context_from_user_input}
+
+## Critique Subject
 **Subject**: {clarified_subject_description}
 **Scope**: {clarified_scope}
 **Files/Changes**: {relevant_files_and_or_git_diff}
@@ -43,8 +53,8 @@ Perform critique using the specified perspective prompt.
 ## Instructions
 1. READ the prompt: /prompts/{perspective_category}/{perspective_name}.md
 2. READ all relevant files and/or git diff identified above
-3. APPLY the perspective prompt with "think super hard" depth
-4. GENERATE critique following the prompt's output format
+3. **Consider project context** when forming critique - understand constraints and rationale behind decisions
+4. APPLY the perspective prompt with "think super hard" depth
 5. SAVE to: reviews/{subject_name}-{perspective}-v1.md
 
 Include metadata:
@@ -56,15 +66,23 @@ CRITIQUE_METADATA:
 ---
 ```
 
-### Phase 3: Synthesis
+### Phase 4: Synthesis
 After all critique Tasks complete:
 1. **READ** all generated critique outputs
-2. **IDENTIFY** cross-perspective findings:
-   - Major issues found by detect-problem perspectives
-   - Strengths reinforced by assess-excellence perspectives
-   - Conflicting views and blind spots
-3. **PRIORITIZE** by severity and frequency
-4. **GENERATE** synthesis: reviews/{subject_name}-synthesis-v1.md
+2. **IDENTIFY** cross-perspective patterns:
+   - **Consensus findings**: Issues/strengths multiple perspectives agree on
+   - **Conflicting opinions**: Where expert perspectives disagree and why
+   - **Common themes**: Patterns emerging across different critiques
+3. **EVALUATE** context-aware findings:
+   - Issues vs. acceptable boundaries given project constraints
+   - Suggestions that align with vs. miss strategic context
+4. **PRIORITIZE** by severity, frequency, and cross-perspective agreement
+5. **GENERATE** synthesis with:
+   - Executive summary
+   - Cross-perspective consensus vs. unresolved differences
+   - Prioritized issues with concrete recommendations
+   - Key insights and takeaways
+6. **SAVE** to: reviews/{subject_name}-synthesis-v1.md
 
 ## Perspective Mapping Examples
 
@@ -109,3 +127,7 @@ AVAILABLE: {list_available_detect_and_assess_prompts}
 # Recent changes
 /critique "detect problems for security review the recent authentication changes"
 ```
+
+## Context-Aware Critique Enhancement
+
+The orchestrator synthesizes project context from user-provided information and passes it to sub-agents. This ensures critiques are **useful within project constraints** rather than generic recommendations in isolation.
