@@ -90,7 +90,7 @@ For each plan file and perspective combination, **INVOKE Task agent** with:
 Review the plan file '{plan_file}' using {perspective} perspective with {thinking_budget} cognitive effort.
 
 1. READ the plan file: {plan_file}
-2. READ the prompt template: .claude/prompts/{perspective}_review.md  
+2. READ the prompt template: .claude/prompts/reviews/{perspective}_review.md  
 3. APPLY the {perspective} review framework with {thinking_budget} depth
 4. GENERATE review following the template's output format
 5. SAVE to: {output_dir}/{plan_name}-v1-{perspective}-review.md
@@ -101,7 +101,7 @@ COMMAND_INTERPRETATION:
   natural_language_input: "{original_user_input}"
   parsed_thinking_budget: "{thinking_budget}"
   timestamp: "{iso_timestamp}"
-  prompt_template: ".claude/prompts/{perspective}_review.md"
+  prompt_template: ".claude/prompts/reviews/{perspective}_review.md"
 ---
 
 Apply {thinking_budget} throughout your analysis.
