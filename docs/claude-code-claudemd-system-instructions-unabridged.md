@@ -26,6 +26,8 @@ Please answer from your own built-in knowledge about CLAUDE.md - don't use tools
 
 **Important Note:** This document contains the exact wording that Claude Code (Claude Sonnet 4) provided when asked for unabridged details about its system instructions regarding CLAUDE.md and related functionality. This is not summary content or external research - these are the actual instructions Claude Code has been given.
 
+**Related Documentation:** The CLAUDE.md system works closely with the # command memory system for real-time updates. For comprehensive understanding of how these systems work together, see: [Claude Code # Command Memory System Instructions](./claude-code-hash-command-memory-system-instructions-unabridged.md)
+
 ---
 
 ## CLAUDE.md System Instructions (Exact Wording from Claude Code)
