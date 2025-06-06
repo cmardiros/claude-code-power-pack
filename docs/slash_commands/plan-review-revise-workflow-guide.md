@@ -1,4 +1,91 @@
-# Plan-Review-Revise Workflow Guide
+# Plan Review & Revise Workflow Guide
+
+## Overview
+
+The `/plan_review_revise` command is a **specialized prompt** that triggers an **agentic workflow** for reviewing and refining existing implementation plans. It takes your existing plans, orchestrates multiple expert review agents to analyze them from different perspectives, then optionally revises the plans when critical issues are found.
+
+## What Does It Do?
+
+```mermaid
+graph TD
+    A["Existing Plans"] --> B["/plan_review_revise command"]
+    B --> C["Review Orchestrator"]
+    C --> D["Parallel Expert Spawning"]
+    
+    D --> E1["Simplicity Expert"]
+    D --> E2["Comprehensive Expert"]
+    D --> E3["Quality Expert"]
+    D --> E4["Security Expert"]
+    D --> E5["Feasibility Expert"]
+    
+    E1 --> F1["Simplicity Review"]
+    E2 --> F2["Comprehensive Review"]
+    E3 --> F3["Quality Analysis"]
+    E4 --> F4["Security Analysis"]
+    E5 --> F5["Feasibility Analysis"]
+    
+    F1 --> G["Review Synthesis"]
+    F2 --> G
+    F3 --> G
+    F4 --> G
+    F5 --> G
+    
+    G --> H{{"Critical Issues Found?"}}
+    H -->|"Yes"| I["Revision Agent"]
+    H -->|"No"| J["Review Reports Only"]
+    
+    I --> K["Revised Plan"]
+    
+    J --> L["Output: Individual Reviews"]
+    K --> M["Output: Reviews + Revised Plan"]
+    
+    style A fill:#e3f2fd
+    style B fill:#e1f5fe
+    style C fill:#f3e5f5
+    style G fill:#e8f5e8
+    style I fill:#f3e5f5
+    style H fill:#fff9c4
+    style E1 fill:#fff3e0
+    style E2 fill:#fff3e0
+    style E3 fill:#fff3e0
+    style E4 fill:#fff3e0
+    style E5 fill:#fff3e0
+```
+
+**Key Value**: Takes your existing plans and provides expert-level quality assurance through parallel review perspectives, automatically revising when critical issues are found.
+
+## Features
+
+### 🔍 **Multi-Perspective Review**
+- **Simplicity Expert**: Focuses on complexity reduction, clarity, over-engineering detection
+- **Comprehensive Expert**: Multi-layered QA validation covering security, feasibility, maintainability
+- Each expert applies specialized frameworks with configurable thinking depth
+
+### ⚡ **Parallel Expert Analysis**
+- Multiple review agents work simultaneously (not sequentially)
+- Automatic plan resolution from natural language (e.g., "my plan", "API plan")
+- Intelligent synthesis identifies critical issues requiring revision
+
+### 🧠 **Configurable Thinking Budget**
+- **"think hard"**: Quick analysis for familiar domains
+- **"think super hard"**: Balanced analysis for production plans (default)
+- **"ultrathink"**: Maximum analysis for critical systems
+
+### 🔄 **Intelligent Revision**
+- Automatically generates improved plans when critical issues found
+- Preserves core objectives while addressing identified concerns
+- Maintains plan structure and adds versioning
+
+## How Slash Commands Work
+
+**Slash commands are specialized prompts** that trigger sophisticated agentic workflows. When you type `/plan_review_revise`, you're launching an orchestrated system where:
+
+1. **The main Claude acts as an orchestrator** - parsing your request and coordinating specialist review agents
+2. **Task agents are spawned** - each with specific review expertise (simplicity, comprehensive analysis, etc.)
+3. **Agents work in parallel** - following specialized review frameworks with configurable thinking depth
+4. **Results are synthesized** - outputs are combined to identify critical issues and generate revisions when needed
+
+This creates a **systematic quality assurance process** for your existing plans rather than ad-hoc reviews.
 
 ## Sync Commands
 
@@ -11,42 +98,18 @@ Please fetch and sync these 3 files from the claude-code-power-pack public repo 
 2. .claude/prompts/reviews/comprehensive_review.md  
 3. .claude/prompts/reviews/simplicity_review.md
 
-Use WebFetch to download each file from:
+Use the Task tool with curl to download each file from:
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/commands/plan_review_revise.md
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/reviews/comprehensive_review.md
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/reviews/simplicity_review.md
 
-IMPORTANT: When using WebFetch, use this exact prompt to ensure high fidelity content preservation: "Return the complete, unmodified file content exactly as it appears in the source. Do not summarize, truncate, or modify any part of the content. This is for programmatic use and requires 100% accuracy."
+Use the Task tool to run curl commands like:
+curl -s "https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/commands/plan_review_revise.md"
 
 Then use Write to save each file to the corresponding path in my local .claude directory, creating the directories if they don't exist. Please maintain the exact file structure and content.
 ```
 
 ---
-
-## Overview
-
-The automated plan-review-revise workflow provides intelligent, multi-perspective analysis of software development plans using Claude Code slash commands. This system helps teams identify issues, reduce complexity, and improve plan quality before implementation begins.
-
-## Key Features
-
-### 🧠 Intelligent Thinking Budget Allocation
-- **Basic (think hard)**: Pattern identification and conflict resolution
-- **Enhanced (think super hard)**: Nuanced prioritization and impact analysis  
-- **Maximum (ultrathink)**: Comprehensive synthesis with strategic implications
-
-### 🔍 Dual Review Perspectives
-- **Simplicity Review**: Focus on complexity reduction and clarity
-- **Comprehensive Review**: Multi-layered QA validation covering security, feasibility, and maintainability
-
-### ⚡ Parallel Processing
-- Reviews multiple plans and perspectives simultaneously
-- Automatic error handling with graceful degradation
-- Intelligent synthesis across all review outputs
-
-### 🔄 Automated Revision
-- Generates improved plans when critical issues are identified
-- Maintains core objectives while addressing key concerns
-- Documents changes and rationale with appropriate depth
 
 ## How It Works
 

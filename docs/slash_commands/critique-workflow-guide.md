@@ -1,5 +1,89 @@
 # Critique Workflow Guide
 
+## Overview
+
+The `/critique` command is a **specialized prompt** that triggers an **agentic workflow** for comprehensive code and plan analysis. It orchestrates multiple AI agents to simultaneously examine your code from different expert perspectives, then synthesizes their findings into actionable insights.
+
+## What Does It Do?
+
+```mermaid
+graph TD
+    A["/critique command"] --> B["Claude Orchestrator"]
+    B --> C["Context Synthesis"]
+    C --> D["Subject Resolution"]
+    D --> E["Parallel Agent Spawning"]
+    
+    E --> F1["Security Expert"]
+    E --> F2["Architecture Expert"] 
+    E --> F3["Performance Expert"]
+    E --> F4["Code Quality Expert"]
+    E --> F5["Production Expert"]
+    E --> F6["...More Experts"]
+    
+    F1 --> G1["Security Review"]
+    F2 --> G2["Architecture Review"]
+    F3 --> G3["Performance Review"] 
+    F4 --> G4["Code Quality Review"]
+    F5 --> G5["Production Review"]
+    F6 --> G6["...More Reviews"]
+    
+    G1 --> H["Expert Synthesis"]
+    G2 --> H
+    G3 --> H
+    G4 --> H
+    G5 --> H
+    G6 --> H
+    
+    H --> I["Consensus Findings"]
+    H --> J["Conflicting Opinions"]
+    H --> K["Prioritized Issues"]
+    H --> L["Executive Summary"]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style H fill:#e8f5e8
+    style F1 fill:#fff3e0
+    style F2 fill:#fff3e0
+    style F3 fill:#fff3e0
+    style F4 fill:#fff3e0
+    style F5 fill:#fff3e0
+    style F6 fill:#fff3e0
+```
+
+**Key Value**: Multiple expert perspectives working in parallel catch blind spots, reduce bias, and synthesize insights that single reviews miss.
+
+## Features
+
+### 🔍 **Dual Critique Categories**
+- **Detect Problems**: Hunt for issues, anti-patterns, security risks, over-engineering
+- **Assess Excellence**: Evaluate what's working well - architecture, performance, code quality
+
+### ⚡ **Parallel Expert Analysis** 
+- Multiple AI agents work simultaneously (not sequentially)
+- Each agent specializes in one perspective (security, performance, etc.)
+- Automatic synthesis shows consensus vs. conflicting opinions
+
+### 🎯 **Intelligent Subject Resolution**
+- Automatically finds relevant files when you mention concepts
+- Includes git changes if you reference "recent changes"
+- Understands context from natural language descriptions
+
+### 📊 **Structured Output**
+- Individual expert reports saved to `reviews/` directory
+- Synthesis report highlighting agreements, disagreements, and priorities
+- Metadata tracking for reproducibility
+
+## How Slash Commands Work
+
+**Slash commands are specialized prompts** that trigger sophisticated agentic workflows. When you type `/critique`, you're not just asking Claude a question - you're launching an orchestrated system where:
+
+1. **The main Claude acts as an orchestrator** - understanding your request and coordinating sub-agents
+2. **Task agents are spawned** - each with specialized expertise and specific instructions
+3. **Agents work in parallel** - multiple analyses happen simultaneously 
+4. **Results are synthesized** - the orchestrator combines findings into actionable insights
+
+This is fundamentally different from a simple chat - it's like having Claude manage a team of AI consultants for you.
+
 ## Sync Commands
 
 To sync the `/critique` command and its prompts to another project, use this prompt with Claude Code:
@@ -11,7 +95,7 @@ Please fetch and sync these files from the claude-code-power-pack public repo to
 2. All files from .claude/prompts/detect-problem/
 3. All files from .claude/prompts/assess-excellence/
 
-Use WebFetch to download each file from:
+Use the Task tool with curl to download each file from:
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/commands/critique.md
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/detect-problem/detect-problem-anti-patterns.md
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/detect-problem/detect-problem-blindspots.md
@@ -30,30 +114,13 @@ Use WebFetch to download each file from:
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/assess-excellence/assess-excellence-testing.md
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/assess-excellence/assess-excellence-veteran.md
 
-IMPORTANT: When using WebFetch, use this exact prompt to ensure high fidelity content preservation: "Return the complete, unmodified file content exactly as it appears in the source. Do not summarize, truncate, or modify any part of the content. This is for programmatic use and requires 100% accuracy."
+Use the Task tool to run curl commands like:
+curl -s "https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/commands/critique.md"
 
 Then use Write to save each file to the corresponding path in my local .claude directory, creating the directories if they don't exist. Please maintain the exact file structure and content.
 ```
 
 ---
-
-The `/critique` command provides parallel, multi-perspective analysis of code, implementations, and plans using specialized critique perspectives. It orchestrates Task agents to perform deep analysis from different angles and synthesizes results into actionable insights.
-
-## Key Features
-
-### 🔍 Dual Critique Categories
-- **Detect Problems**: Identify issues, anti-patterns, security risks, over-engineering
-- **Assess Excellence**: Evaluate architecture, performance, code quality, production readiness
-
-### ⚡ Parallel Processing
-- Multiple perspectives analyzed simultaneously
-- Automatic subject resolution (files, git changes, concepts)
-- Intelligent synthesis across all critique outputs
-
-### 🎯 Flexible Targeting
-- Analyze specific files or recent changes
-- Review entire implementations or architectural decisions
-- Support for natural language perspective specification
 
 ## Available Perspectives
 
@@ -77,29 +144,30 @@ The `/critique` command provides parallel, multi-perspective analysis of code, i
 - `testing` - Test coverage and quality
 - `veteran` - Senior developer perspective
 
-## How It Works
+## Workflow Behind the Scenes
 
-### Context Resolution
-The command intelligently resolves critique subjects:
+### 1. **Context Analysis & Subject Resolution**
+The orchestrator synthesizes project context from your input and intelligently resolves what to critique:
 - **File references**: Searches plans/, src/, docs/ for matching files
-- **Recent changes**: Includes git diff of uncommitted changes
+- **Recent changes**: Includes git diff of uncommitted changes  
 - **Concept references**: Finds related files using keywords
-- **Domain insights**: Applies relevant design patterns and best practices
+- **Project context**: Extracts vision, constraints, and decision rationale to guide critiques
 
-### Parallel Analysis
+### 2. **Parallel Agent Spawning**
 Each perspective spawns a dedicated Task agent that:
-1. Reads the specified perspective prompt
-2. Analyzes relevant files and context
-3. Applies deep "think super hard" analysis
-4. Generates structured critique output
-5. Saves results to `reviews/` directory
+1. Receives project context and critique subject
+2. Reads specialized perspective prompt (detect-problem-security.md, assess-excellence-architectural.md, etc.)
+3. Analyzes relevant files with "think super hard" depth
+4. Generates structured critique following prompt framework
+5. Saves individual report to `reviews/` directory
 
-### Synthesis
-After all perspectives complete, the orchestrator:
-1. Aggregates all critique results
-2. Identifies cross-perspective patterns
-3. Prioritizes issues by severity and frequency
-4. Generates synthesis report
+### 3. **Expert Synthesis**
+After all agents complete, the orchestrator:
+1. Aggregates all expert findings
+2. Identifies **consensus vs. conflicting opinions**
+3. Highlights **common themes** across perspectives
+4. Prioritizes issues by severity and cross-expert agreement
+5. Generates executive summary with concrete recommendations
 
 ## Usage Examples
 
