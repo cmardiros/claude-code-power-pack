@@ -23,8 +23,8 @@ Orchestrate parallel critiques from specified perspectives. Your role:
    - Concept references: search for related files using keywords
    - Domain-specific insights: relevant design patterns, architectural principles, or industry best practices that apply
 3. **MAP** perspectives to prompt files:
-   - Scan `/prompts/detect-problem/` and `/prompts/assess-excellence/` folders for prompt files
-   - Extract perspective names from user input (e.g., "detect-problem-security" → `/prompts/detect-problem/security.md`)
+   - Scan `.claude/prompts/detect-problem/` and `.claude/prompts/assess-excellence/` folders for prompt files
+   - Extract perspective names from user input (e.g., "detect-problem-security" → `.claude/prompts/detect-problem/detect-problem-security.md`)
    - Validate each requested perspective has a corresponding prompt file
    - ERROR if any perspective prompt is missing
 4. **CLARIFY** context for sub-agents:
@@ -51,7 +51,7 @@ Perform critique using the specified perspective prompt.
 **Background**: {background_context}
 
 ## Instructions
-1. READ the prompt: /prompts/{perspective_category}/{perspective_name}.md
+1. READ the prompt: .claude/prompts/{perspective_category}/{perspective_category}-{perspective_name}.md
 2. READ all relevant files and/or git diff identified above
 3. **Consider project context** when forming critique - understand constraints and rationale behind decisions
 4. APPLY the perspective prompt with "think super hard" depth
@@ -61,7 +61,7 @@ Include metadata:
 ---
 CRITIQUE_METADATA:
   timestamp: "{iso_timestamp}"
-  prompt_template: "/prompts/{perspective_category}/{perspective_name}.md"
+  prompt_template: ".claude/prompts/{perspective_category}/{perspective_category}-{perspective_name}.md"
   clarified_subject: "{clarified_subject_description}"
 ---
 ```
@@ -86,15 +86,15 @@ After all critique Tasks complete:
 
 ## Perspective Mapping Examples
 
-**User input**: "detect problems for security, performance and assess excellence for architecture in the auth implementation"
+**User input**: "detect problems for security, performance and assess excellence for architectural in the auth implementation"
 **Maps to**:
-- `/prompts/detect-problem/security.md`
-- `/prompts/detect-problem/performance.md`
-- `/prompts/assess-excellence/architecture.md`
+- `.claude/prompts/detect-problem/detect-problem-security.md` (security → detect-problem-security)
+- `.claude/prompts/detect-problem/detect-problem-performance.md` (performance → closest match)
+- `.claude/prompts/assess-excellence/assess-excellence-architectural.md`
 
-**User input**: "detect problems related to overengineering look at the logging plan"
+**User input**: "detect problems related to over-engineering look at the logging plan"
 **Maps to**:
-- `/prompts/detect-problem/overengineering.md`
+- `.claude/prompts/detect-problem/detect-problem-over-engineering.md`
 
 ## Error Handling
 
@@ -108,7 +108,7 @@ SUGGESTION: Be more specific about files or scope
 ### Perspective Prompt Missing
 ```
 ERROR: Perspective prompt not found: '{perspective}'
-EXPECTED: /prompts/{detect-problem|assess-excellence}/{perspective_name}.md
+EXPECTED: .claude/prompts/{detect-problem|assess-excellence}/{category}-{perspective_name}.md
 AVAILABLE: {list_available_detect_and_assess_prompts}
 ```
 
