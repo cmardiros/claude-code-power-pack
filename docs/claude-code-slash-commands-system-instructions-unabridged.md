@@ -47,6 +47,10 @@ Please answer from your own built-in knowledge about slash commands - don't use 
 - Each command is a markdown file with `.md` extension
 - File name becomes the command name (e.g., `analyze_code.md` → `/analyze_code`)
 - Commands are discovered automatically when directory is present
+- Claude Code automatically scans `.claude/commands/` for available commands
+- Command names derived from filename (without .md extension)
+- Commands become available immediately when files are created
+- No restart or reload required for new commands
 
 **Project Integration:**
 - Commands can be version controlled and shared with teams
@@ -102,6 +106,15 @@ Please answer from your own built-in knowledge about slash commands - don't use 
 - **Error Handling**: Missing required parameters handled gracefully
 - **Rest Parameter Expansion**: `{...}` captures remaining arguments
 
+**Parameter Handling Specifics:**
+- Multi-word parameters require quotes: `PARAM="multi word value"`
+- Special characters preserved within quoted parameters
+- Nested quotes handled appropriately
+- Whitespace preserved in quoted strings
+- Named parameters can be provided in any order
+- Parameter validation occurs after substitution
+- Missing parameters handled gracefully with clear feedback
+
 **Processing Differences from Regular Prompts:**
 - Pre-structured context and instructions built into commands
 - Specific output format expectations included
@@ -121,6 +134,15 @@ Please answer from your own built-in knowledge about slash commands - don't use 
 - CLAUDE.md files still apply during command execution
 - Git repository state and environment context available
 - Working directory and file system access maintained
+
+**Performance and Efficiency:**
+- Commands processed as single prompt units
+- Parameter substitution occurs before main processing
+- Full context and capabilities available during execution
+- No performance penalty for using commands vs direct prompts
+- Commands inherit all resource constraints and capabilities
+- Token limits apply to final substituted prompt
+- Tool usage governed by same policies as regular prompts
 
 ### Command Design Best Practices
 
@@ -179,44 +201,6 @@ Please answer from your own built-in knowledge about slash commands - don't use 
 - Commands enable consistent team workflows
 - Standardize common development tasks
 - Share best practices through command libraries
-
----
-
-## Additional System Guidance for Slash Commands
-
-### Command Discovery and Execution
-
-**File System Integration:**
-- Claude Code automatically scans `.claude/commands/` for available commands
-- Command names derived from filename (without .md extension)
-- Commands become available immediately when files are created
-- No restart or reload required for new commands
-
-### Parameter Handling Specifics
-
-**Quoting and Escaping:**
-- Multi-word parameters require quotes: `PARAM="multi word value"`
-- Special characters preserved within quoted parameters
-- Nested quotes handled appropriately
-- Whitespace preserved in quoted strings
-
-**Parameter Order Independence:**
-- Named parameters can be provided in any order
-- Parameter validation occurs after substitution
-- Missing parameters handled gracefully with clear feedback
-
-### Performance and Efficiency
-
-**Command Execution Optimization:**
-- Commands processed as single prompt units
-- Parameter substitution occurs before main processing
-- Full context and capabilities available during execution
-- No performance penalty for using commands vs direct prompts
-
-**Resource Management:**
-- Commands inherit all resource constraints and capabilities
-- Token limits apply to final substituted prompt
-- Tool usage governed by same policies as regular prompts
 
 ### Integration Patterns
 

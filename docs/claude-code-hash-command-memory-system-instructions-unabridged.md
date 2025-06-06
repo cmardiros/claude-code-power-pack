@@ -40,22 +40,25 @@ Please answer from your own built-in knowledge about the # command system - don'
 - The # command "creates persistent memories by automatically appending content to your project's CLAUDE.md file"
 - "Makes memories available across all future sessions in that project directory"
 - "The persistence comes from storing information in the filesystem rather than just session memory"
-- Integrates directly with the existing CLAUDE.md hierarchical system
-- Enables real-time capture of insights and preferences during development work
-
-### Command Syntax and Recognition
-
-**Basic Usage Pattern:**
 - "# followed by any text as a memory command"
 - "No special formatting is required - just # your instruction or information here"
 - "The system is designed to be simple and natural"
-- Simple syntax: `# Remember that this project uses React hooks exclusively`
+- "The system is built for simplicity - just use # followed by what you want remembered"
+- Integrates directly with the existing CLAUDE.md hierarchical system
+- Enables real-time capture of insights and preferences during development work
+
+### Processing and Storage
 
 **Processing Flow:**
 - "# command recognized during conversation"
 - "automatically append the content (minus the #) to your CLAUDE.md file"
 - "The information becomes part of my persistent context for that project, loaded at the start of every new session"
 - Immediate integration into persistent context
+
+**Usage Examples:**
+- Simple syntax: `# Remember that this project uses React hooks exclusively`
+- `# Use TypeScript interfaces over types for this project`
+- `# Always run npm run type-check before commits`
 
 ### Integration with CLAUDE.md Hierarchy
 
@@ -78,6 +81,11 @@ Please answer from your own built-in knowledge about the # command system - don'
 - "Important context about the codebase"
 - "Recurring instructions you don't want to repeat"
 - "Domain-specific knowledge for the project"
+
+**Memory Quality Guidelines:**
+- "Memories should be specific enough to be actionable but general enough to remain relevant over time"
+- Built-in organizational assistance for clarity and grouping
+- Automatic maintenance of readability and structure
 
 **Persistence Mechanics:**
 - Memories "survive beyond the current conversation"
@@ -118,7 +126,6 @@ Please answer from your own built-in knowledge about the # command system - don'
 
 **Built-in Organization Assistance:**
 - "I'm designed to help organize memories by suggesting logical groupings and helping maintain clarity"
-- "Memories should be specific enough to be actionable but general enough to remain relevant over time"
 - System automatically maintains readability and structure
 
 **Hierarchical Integration:**
@@ -227,48 +234,6 @@ Please answer from your own built-in knowledge about the # command system - don'
 - Captures knowledge that emerges through actual usage
 - Builds project-specific AI expertise over time
 - Creates increasingly effective development assistance
-
----
-
-## Additional # Command Insights from Follow-up Introspection
-
-### Simplified Memory Mechanics
-
-**Core Simplicity:**
-- "# followed by any text as a memory command" - no complex patterns needed
-- "No special formatting is required - just # your instruction or information here"
-- "The system is designed to be simple and natural"
-- "The system is built for simplicity - just use # followed by what you want remembered"
-
-### Automatic File Management
-
-**Direct CLAUDE.md Integration:**
-- "automatically appending content to your project's CLAUDE.md file"
-- "automatically append the content (minus the #) to your CLAUDE.md file"
-- No manual file management required
-- Seamless integration with existing CLAUDE.md content
-
-### Memory Quality Guidelines
-
-**Effective Memory Characteristics:**
-- "Project-specific preferences and conventions"
-- "Custom workflows and processes"  
-- "Important context about the codebase"
-- "Recurring instructions you don't want to repeat"
-- "Domain-specific knowledge for the project"
-
-**Memory Optimization:**
-- "Memories should be specific enough to be actionable but general enough to remain relevant over time"
-- Built-in organizational assistance for clarity and grouping
-- Automatic maintenance of readability and structure
-
-### Persistence and Loading
-
-**Filesystem-Based Persistence:**
-- "The persistence comes from storing information in the filesystem rather than just session memory"
-- "Makes memories available across all future sessions in that project directory"
-- "load automatically when I start working in a project directory"
-- "They become part of my base context, influencing how I approach tasks throughout the conversation"
 
 ---
 
