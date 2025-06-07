@@ -33,7 +33,11 @@ Orchestrate parallel critiques from specified perspectives. Your role:
    - Background context and motivation
 
 ### Phase 3: Spawn Parallel Critique Tasks
-For each mapped perspective prompt, **INVOKE Task agent** with:
+For each mapped perspective prompt:
+
+1. **DOCUMENT orchestrator prompt** - save the exact Task invocation to: reviews/{subject_name}-orchestrator-prompt-v1.md
+
+2. **INVOKE Task agent** with:
 
 **Task Description**: "{perspective} critique of {subject}"
 
@@ -64,6 +68,35 @@ CRITIQUE_METADATA:
   prompt_template: ".claude/prompts/{perspective_category}/{perspective_category}-{perspective_name}.md"
   clarified_subject: "{clarified_subject_description}"
 ---
+```
+
+**Orchestrator Prompt Documentation Format**:
+```
+---
+ORCHESTRATOR_METADATA:
+  timestamp: "{iso_timestamp}"
+  subject: "{subject_name}"
+  perspectives_count: {number_of_perspectives}
+---
+
+# Orchestrator Prompt Documentation
+
+## User Request
+{original_user_input}
+
+## Resolved Context
+{synthesized_context_from_user_input}
+
+## Task Invocations
+{for_each_perspective}
+### {perspective_name}
+**Task Description**: "{perspective} critique of {subject}"
+
+**Complete Task Prompt**:
+```
+{exact_complete_task_prompt_with_all_variables_resolved}
+```
+{end_for_each_perspective}
 ```
 
 ### Phase 4: Synthesis
