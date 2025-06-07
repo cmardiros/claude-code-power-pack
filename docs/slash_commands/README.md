@@ -26,12 +26,12 @@ Intelligent multi-perspective analysis and revision of software development plan
 /plan_review_revise PLANS="plan1.md,plan2.md" REVIEW_PERSPECTIVES="simplicity,comprehensive"
 ```
 
-### `/critique`
+### `/critique-prep` & `/critique-request`
 **Status**: ✅ Fully Implemented  
-**Location**: `.claude/commands/critique.md`  
+**Location**: `.claude/commands/critique-prep.md`, `.claude/commands/critique-request.md`  
 **Guide**: [Critique Workflow Guide](critique-workflow-guide.md)
 
-Parallel multi-perspective critique orchestrator for code, implementations, and plans.
+Two-phase critique workflow with human oversight for parallel multi-perspective analysis.
 
 **Available Perspectives:**
 - ✅ **Detect Problems**: `anti-patterns`, `blindspots`, `future-regrets`, `junior-mistakes`, `over-engineering`, `premortem-failures`, `smells`
@@ -39,8 +39,11 @@ Parallel multi-perspective critique orchestrator for code, implementations, and 
 
 **Usage Examples:**
 ```bash
-/critique "detect problems for security, performance in the auth implementation"
-/critique "assess excellence for architecture analyze the new API design"
+# Phase 1: Prepare with human review
+/critique-prep "detect problems for security, performance in the auth implementation"
+
+# Phase 2: Execute when satisfied with preparation
+/critique-request critique-prep/auth-implementation-critique-prep-v1.md
 ```
 
 ## Command Structure
