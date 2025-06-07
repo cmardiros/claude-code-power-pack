@@ -7,13 +7,18 @@ Prepare for multi-perspective critique panel analysis by synthesizing project co
 
 ## Preparation Workflow
 
-### Phase 1: Context Synthesis
+### Phase 1: Context Synthesis with Perspective Validation
 
 **SYNTHESIZE** project context from user-provided information:
 - If user references docs/files, extract key vision, constraints, and decision rationale
 - If user references a plan, provide full path to the plan file and instruct agents to read plan carefully
 - Distill WHY decisions were made and what trade-offs guide the project
-- Create focused PROJECT_CONTEXT summary for execution phase
+
+**VALIDATE** context by briefly considering: "Would the requested critique perspectives (security, architecture, performance, etc.) have enough context to provide meaningful analysis? Are there obvious gaps that would lead them astray?"
+
+**REFINE** context if gaps are identified, focusing on what each perspective needs to understand the problem correctly.
+
+**CREATE** focused PROJECT_CONTEXT summary for execution phase
 
 ### Phase 2: Subject Resolution and Perspective Extraction
 1. **EXTRACT** critique purpose and requested perspectives from natural language input
