@@ -19,21 +19,15 @@
 claude mcp add-json macos-notification '{"command":"uvx","args":["git+ssh://git@github.com/githubuser/mcp-project-name.git"]}'
 ```
 
-**Get server details:**
-```bash
-claude mcp get macos-notification
-```
-
 **Remove the server:**
 ```bash
 claude mcp remove macos-notification
 ```
 
-**Check server has been removed:**
+**Get server details:**
 ```bash
-claude mcp list
+claude mcp get macos-notification
 ```
-
 
 ## Main Command
 ```
