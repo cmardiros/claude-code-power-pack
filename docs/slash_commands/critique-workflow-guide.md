@@ -123,8 +123,13 @@ Please fetch and sync these files from the claude-code-power-pack public repo to
 3. All files from .claude/prompts/assess-excellence/
 
 Use the Task tool with curl to download each file from:
+
+**Commands:**
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/commands/critique-prep.md
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/commands/critique-request.md
+- https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/commands/plan_review_revise.md
+
+**Detect Problem Prompts:**
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/detect-problem/detect-problem-anti-patterns.md
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/detect-problem/detect-problem-blindspots.md
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/detect-problem/detect-problem-future-regrets.md
@@ -132,6 +137,9 @@ Use the Task tool with curl to download each file from:
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/detect-problem/detect-problem-over-engineering.md
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/detect-problem/detect-problem-premortem-failures.md
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/detect-problem/detect-problem-smells.md
+- https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/detect-problem/detect-problem-veteran-latest.md
+
+**Assess Excellence Prompts:**
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/assess-excellence/assess-excellence-architectural.md
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/assess-excellence/assess-excellence-code.md
 - https://raw.githubusercontent.com/cmardiros/claude-code-power-pack/main/.claude/prompts/assess-excellence/assess-excellence-future-value.md
