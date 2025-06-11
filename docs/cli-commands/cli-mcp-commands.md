@@ -14,9 +14,14 @@
 }
 ```
 
-**Add the server:**
+**Add the server (local scope - default):**
 ```bash
 claude mcp add-json macos-notification '{"command":"uvx","args":["git+ssh://git@github.com/githubuser/mcp-project-name.git"]}'
+```
+
+**Add the server at user scope:**
+```bash
+claude mcp add-json macos-notification '{"command":"uvx","args":["git+ssh://git@github.com/githubuser/mcp-project-name.git"]}' --scope user
 ```
 
 **Remove the server:**
